@@ -1,5 +1,19 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  extraPackages = with pkgs; [
+    fd
+    tree-sitter
+    nixfmt-rfc-style
+    stylua
+    prettierd
+    nerd-fonts.symbols-only
+  ];
+
   # Import all your configuration modules here
   imports = [
     ./bufferlines
