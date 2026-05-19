@@ -45,8 +45,7 @@
         cvs = false;
         "." = false;
       };
-      copilot_node_command = "node"; # Node.js version must be > 18.x
-      server_opts_overrides = { };
+      # copilot_node_command and server_opts_overrides use NixVim defaults ("node" and {})
     };
   };
 }
