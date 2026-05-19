@@ -9,6 +9,7 @@
     sidebar.enable = lib.mkEnableOption "Enable sidebar module";
   };
   config = lib.mkIf config.sidebar.enable {
+    # TODO: migrate to pkgs.vimPlugins.sidebar-nvim when available in nixpkgs
     extraPlugins = with pkgs.vimUtils; [
       (buildVimPlugin {
         pname = "sidebar.nvim";
