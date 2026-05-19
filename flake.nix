@@ -46,10 +46,17 @@
       {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
-          default = nixvimLib.check.mkTestDerivationFromNvim {
+          default = (nixvimLib.check.mkTestDerivationFromNvim {
             inherit nvim;
             name = "Neve";
-          };
+          }).overrideAttrs (oldAttrs: {
+            # Neovim 0.12 requires $HOME/.local/share/nvim for stdpath('data').
+            # The nixvim test harness only creates .cache/nvim. Pre-create the
+            # missing directory before running nvim.
+            buildCommand = ''
+              mkdir -p .local/share/nvim
+            '' + oldAttrs.buildCommand;
+          });
         };
 
         packages = {
