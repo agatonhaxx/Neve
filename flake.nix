@@ -55,6 +55,21 @@
         packages = {
           # Lets you run `nix run .` to start nixvim
           default = nvim;
+
+          # Wrapped with Lua runtimepath fix for Neovim 0.12
+          wrapped = pkgs.symlinkJoin {
+            name = "neve-wrapped";
+            paths = [ nvim ];
+            postBuild = ''
+              mv $out/bin/nvim $out/bin/.nvim-real
+              cat > $out/bin/nvim << 'SCRIPT'
+            #!/bin/sh
+            exec "$(dirname "$0")/.nvim-real" --cmd "lua for _,p in ipairs(vim.api.nvim_get_runtime_file('lua',true)) do package.path=package.path..';'..p..'/?.lua;'..p..'/?/init.lua' end" "$@"
+            SCRIPT
+              chmod +x $out/bin/nvim
+            '';
+            meta.mainProgram = "nvim";
+          };
         };
 
         formatter = pkgs.nixfmt-rfc-style;
