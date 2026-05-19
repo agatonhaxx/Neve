@@ -72,3 +72,38 @@ Items are classified as:
   (fallback) are not included in the Neve closure. These are language-specific tools that
   not every user needs. Install them per-project or per-user preference.
   `prettierd` is included as the primary web-language formatter.
+
+### vim.pack — Existing packages in vim-pack-dir
+- **Severity:** 1 ⚠️
+- **Classification:** Expected
+- **Detail:** NixVim manages plugins via a constructed `vim-pack-dir` at
+  `/nix/store/...-vim-pack-dir/pack/myNeovimPackages`. `vim.pack` healthcheck
+  detects these as "existing packages" which is the intended behaviour.
+
+### vim.treesitter — Java parser up-to-date warning
+- **Severity:** 1 ⚠️
+- **Classification:** Upstream
+- **Detail:** nvim-treesitter healthcheck warns when a parser may need updating.
+  This is a per-parser maintenance notice, not a configuration error. Parsers are
+  managed via Nix derivations and updated with nixpkgs.
+
+### vim.health — Version number mismatch
+- **Severity:** 1 ⚠️
+- **Classification:** Expected
+- **Detail:** NixVim wraps Neovim in a derivation that may report a different
+  `:version` string than the unwrapped binary. This is a packaging artifact and
+  does not affect functionality.
+
+### nvim-treesitter — Unknown filetype 'javascript.jsx'
+- **Severity:** 1 ⚠️
+- **Classification:** Upstream
+- **Detail:** The `javascript.jsx` filetype is a legacy alias. nvim-treesitter's
+  filetype-to-parser mapping may not recognize it. Does not affect highlighting
+  or parsing of actual `.jsx` files.
+
+### nvim-treesitter — Unknown filetype 'typescript.tsx'
+- **Severity:** 1 ⚠️
+- **Classification:** Upstream
+- **Detail:** The `typescript.tsx` filetype is a legacy alias. nvim-treesitter's
+  filetype-to-parser mapping may not recognize it. Does not affect highlighting
+  or parsing of actual `.tsx` files.
