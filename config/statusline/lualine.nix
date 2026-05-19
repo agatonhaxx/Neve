@@ -36,7 +36,7 @@
       };
     };
     extraConfigLua = ''
-      local harpoon = require("harpoon.mark")
+      local harpoon = require("harpoon")
 
       local function truncate_branch_name(branch)
         if not branch or branch == "" then
@@ -51,12 +51,14 @@
       end
 
       local function harpoon_component()
-        local total_marks = harpoon.get_length()
+        local list = harpoon:list()
+        local total_marks = list:length()
         if total_marks == 0 then
           return ""
         end
         local current_mark = "\226\128\148"
-        local mark_idx = harpoon.get_current_index()
+        -- harpoon2 tracks current index via internal _index field (1-based)
+        local mark_idx = list._index
         if mark_idx ~= nil then
           current_mark = tostring(mark_idx)
         end
