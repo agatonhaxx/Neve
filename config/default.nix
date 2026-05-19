@@ -8,7 +8,7 @@
   extraPackages = with pkgs; [
     fd
     tree-sitter
-    nixfmt-rfc-style
+    nixfmt
     stylua
     prettierd
     nerd-fonts.symbols-only
