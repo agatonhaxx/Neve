@@ -5,9 +5,6 @@
   };
   config = lib.mkIf config.lsp-nvim.enable {
     plugins = {
-      lsp-format = {
-        enable = false; # Enable it if you want lsp-format integration for none-ls
-      };
       lsp = {
         enable = true;
         capabilities = "offsetEncoding = 'utf-16'";
