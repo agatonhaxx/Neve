@@ -7,7 +7,7 @@
     plugins.web-devicons = {
       enable = true;
     };
-    plugins.mini.icons = {
+    plugins.mini.modules.icons = {
       enable = true;
     };
   };
