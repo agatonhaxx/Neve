@@ -158,14 +158,6 @@
               action = "open_float";
               desc = "Line Diagnostics";
             };
-            "[d" = {
-              action = "goto_next";
-              desc = "Next Diagnostic";
-            };
-            "]d" = {
-              action = "goto_prev";
-              desc = "Previous Diagnostic";
-            };
           };
         };
         onAttach = ''
@@ -183,60 +175,47 @@
       };
     };
     extraConfigLua = ''
-          local _border = "rounded"
+      require("lspconfig.ui.windows").default_options = { border = "rounded" }
 
-          require('lspconfig.ui.windows').default_options = {
-            border = _border
-          }
+      vim.lsp.config("*", {
+        handlers = {
+          ["textDocument/hover"] = function(err, result, ctx, config)
+            vim.lsp.handlers.hover(err, result, ctx, vim.tbl_extend("force", config or {}, { border = "rounded" }))
+          end,
+          ["textDocument/signatureHelp"] = function(err, result, ctx, config)
+            vim.lsp.handlers.signature_help(err, result, ctx, vim.tbl_extend("force", config or {}, { border = "rounded" }))
+          end,
+        },
+      })
 
-          vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
-            config = vim.tbl_deep_extend("force", config or {}, { border = _border })
-            return vim.lsp.handlers.hover(err, result, ctx, config)
-          end
-
-          vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
-            config = vim.tbl_deep_extend("force", config or {}, { border = _border })
-            return vim.lsp.handlers.signature_help(err, result, ctx, config)
-          end
-
-          vim.diagnostic.config({
-      			float = { border = "rounded" },
-      			virtual_text = {
-      				prefix = "",
-      			},
-            signs = true,
-            underline = true,
-            update_in_insert = true,
-      		})
-
-        --   vim.api.nvim_create_autocmd("LspAttach", {
-        --   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        --   callback = function(args)
-        --     local client = vim.lsp.get_client_by_id(args.data.client_id)
-        --     if client.server_capabilities.inlayHintProvider then
-        --       vim.lsp.inlay_hint.enable(false)
-        --     end
-        --     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-        --
-        --     local opts = { buffer = args.buf }
-        --     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        --     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-        --     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        --     vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-        --     vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-        --     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        --     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-        --     vim.keymap.set("n", "<space>cw", vim.lsp.buf.workspace_symbol, opts)
-        --     vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
-        --     vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-        --     vim.keymap.set("n", "<space>cf", function()
-        --       vim.lsp.buf.format({ async = true })
-        --     end, opts)
-        --     vim.keymap.set("n", "<space>cd", vim.diagnostic.open_float, opts)
-        --     vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-        --     vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-        --   end,
-        -- })
+      vim.diagnostic.config({
+        float = { border = "rounded" },
+        virtual_text = { prefix = "" },
+        signs = true,
+        underline = true,
+        update_in_insert = true,
+      })
     '';
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "[d";
+        action.__raw = "function() vim.diagnostic.jump({ count = 1, float = true }) end";
+        options = {
+          silent = true;
+          desc = "Next Diagnostic";
+        };
+      }
+      {
+        mode = "n";
+        key = "]d";
+        action.__raw = "function() vim.diagnostic.jump({ count = -1, float = true }) end";
+        options = {
+          silent = true;
+          desc = "Previous Diagnostic";
+        };
+      }
+    ];
   };
 }

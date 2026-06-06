@@ -23,7 +23,6 @@
     ./project-nvim.nix
     ./tmux-navigator.nix
     ./todo-comments.nix
-    ./ultimate-autopair.nix
     ./undotree.nix
     ./wakatime.nix
     ./which-key.nix
@@ -52,7 +51,6 @@
     project-nvim.enable = lib.mkDefault true;
     tmux-navigator.enable = lib.mkDefault true;
     todo-comments.enable = lib.mkDefault true;
-    ultimate-autopair.enable = lib.mkDefault true;
     undotree.enable = lib.mkDefault true;
     wakatime.enable = lib.mkDefault true;
     which-key.enable = lib.mkDefault true;

@@ -18,8 +18,14 @@
           relative = "cursor";
           prefer_width = 40;
           width = null;
-          max_width = [ 140 0.9 ];
-          min_width = [ 20 0.2 ];
+          max_width = [
+            140
+            0.9
+          ];
+          min_width = [
+            20
+            0.2
+          ];
           win_options = {
             wrap = false;
             list = true;
@@ -41,7 +47,13 @@
         };
         select = {
           enabled = true;
-          backend = [ "telescope" "fzf_lua" "fzf" "builtin" "nui" ];
+          backend = [
+            "telescope"
+            "fzf_lua"
+            "fzf"
+            "builtin"
+            "nui"
+          ];
           trim_prompt = true;
           telescope = null;
           fzf = {
@@ -71,11 +83,20 @@
               cursorlineopt = "both";
             };
             width = null;
-            max_width = [ 140 0.8 ];
-            min_width = [ 40 0.2 ];
+            max_width = [
+              140
+              0.8
+            ];
+            min_width = [
+              40
+              0.2
+            ];
             height = null;
             max_height = 0.9;
-            min_height = [ 10 0.2 ];
+            min_height = [
+              10
+              0.2
+            ];
             mappings = {
               "<Esc>" = "Close";
               "<C-c>" = "Close";
