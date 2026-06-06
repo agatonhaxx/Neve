@@ -9,6 +9,9 @@
     lazy-nvim.enable = lib.mkEnableOption "Enable lazy-nvim module";
   };
   config = lib.mkIf config.lazy-nvim.enable {
+    extraConfigLuaPost = ''
+      vim.go.loadplugins = true
+    '';
     plugins.lazy = {
       enable = true;
       # Add neocord to lazy.nvim's managed plugins so that settings.spec is
