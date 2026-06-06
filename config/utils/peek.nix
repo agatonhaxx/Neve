@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   options = {
     peek.enable = lib.mkEnableOption "Enable peek.nvim markdown preview module";
@@ -34,7 +39,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>cp";
+        key = "<leader>co";
         action = "<cmd>lua _G.peek_toggle()<cr>";
         options = {
           desc = "Toggle Markdown Preview";

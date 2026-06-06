@@ -9,6 +9,7 @@
     ./cloak.nix
     ./colorizer.nix
     ./harpoon.nix
+    ./markdown-preview.nix
     ./peek.nix
     ./mini.nix
     ./neocord.nix
@@ -37,7 +38,8 @@
     better-escape.enable = lib.mkDefault true;
     cloak.enable = lib.mkDefault true;
     harpoon.enable = lib.mkDefault true;
-    peek.enable = lib.mkDefault true;
+    markdown-preview.enable = lib.mkDefault true;
+    peek.enable = lib.mkDefault false;
     mini.enable = lib.mkDefault true;
     neocord.enable = lib.mkDefault true;
     neotest.enable = lib.mkDefault true;
