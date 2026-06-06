@@ -5,9 +5,6 @@
   };
   config = lib.mkIf config.lsp-nvim.enable {
     plugins = {
-      lsp-format = {
-        enable = false; # Enable it if you want lsp-format integration for none-ls
-      };
       lsp = {
         enable = true;
         capabilities = "offsetEncoding = 'utf-16'";
@@ -192,17 +189,15 @@
             border = _border
           }
 
-          vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-            vim.lsp.handlers.hover, {
-              border = _border
-            }
-          )
+          vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+            config = vim.tbl_deep_extend("force", config or {}, { border = _border })
+            return vim.lsp.handlers.hover(err, result, ctx, config)
+          end
 
-          vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-            vim.lsp.handlers.signature_help, {
-              border = _border
-            }
-          )
+          vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
+            config = vim.tbl_deep_extend("force", config or {}, { border = _border })
+            return vim.lsp.handlers.signature_help(err, result, ctx, config)
+          end
 
           vim.diagnostic.config({
       			float = { border = "rounded" },

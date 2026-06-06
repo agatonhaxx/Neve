@@ -1,5 +1,17 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  extraPackages = with pkgs; [
+    fd
+    nixfmt
+    stylua
+    prettierd
+  ];
+
   # Import all your configuration modules here
   imports = [
     ./bufferlines

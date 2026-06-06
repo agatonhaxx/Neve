@@ -2,7 +2,7 @@
   description = "Neve is a Neovim configuration built with Nixvim, which allows you to use Nix language to manage Neovim plugins/options";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/d7f52a7a640bc54c7bb414cca603835bf8dd4b10";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -18,7 +18,6 @@
     }@inputs:
     let
       config = import ./config; # import the module directly
-      # Enable unfree packages
       nixpkgsConfig = {
         allowUnfree = true;
       };
@@ -47,10 +46,20 @@
       {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
-          default = nixvimLib.check.mkTestDerivationFromNvim {
-            inherit nvim;
-            name = "Neve";
-          };
+          default =
+            (nixvimLib.check.mkTestDerivationFromNvim {
+              inherit nvim;
+              name = "Neve";
+            }).overrideAttrs
+              (oldAttrs: {
+                # Neovim 0.12 requires $HOME/.local/share/nvim for stdpath('data').
+                # The nixvim test harness only creates .cache/nvim. Pre-create the
+                # missing directory before running nvim.
+                buildCommand = ''
+                  mkdir -p .local/share/nvim
+                ''
+                + oldAttrs.buildCommand;
+              });
         };
 
         packages = {
