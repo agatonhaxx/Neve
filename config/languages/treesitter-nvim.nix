@@ -13,12 +13,6 @@
         indent = {
           enable = true;
         };
-        autopairs = {
-          enable = true;
-        };
-        folding = {
-          enable = true;
-        };
         ensure_installed = [
           "bash"
           "c"
@@ -45,7 +39,7 @@
           "toml"
           "yaml"
         ];
-        auto_install = true;
+        auto_install = false;
         incremental_selection = {
           enable = true;
           keymaps = {
