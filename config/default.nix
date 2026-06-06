@@ -7,11 +7,9 @@
 {
   extraPackages = with pkgs; [
     fd
-    tree-sitter
     nixfmt
     stylua
     prettierd
-    nerd-fonts.symbols-only
   ];
 
   # Import all your configuration modules here
