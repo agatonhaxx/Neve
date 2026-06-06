@@ -201,7 +201,7 @@
       {
         mode = "n";
         key = "[d";
-        action.__raw = ''function() vim.diagnostic.jump({ count = 1, float = true }) end'';
+        action.__raw = "function() vim.diagnostic.jump({ count = 1, float = true }) end";
         options = {
           silent = true;
           desc = "Next Diagnostic";
@@ -210,7 +210,7 @@
       {
         mode = "n";
         key = "]d";
-        action.__raw = ''function() vim.diagnostic.jump({ count = -1, float = true }) end'';
+        action.__raw = "function() vim.diagnostic.jump({ count = -1, float = true }) end";
         options = {
           silent = true;
           desc = "Previous Diagnostic";
