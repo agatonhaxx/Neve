@@ -158,14 +158,6 @@
               action = "open_float";
               desc = "Line Diagnostics";
             };
-            "[d" = {
-              action = "goto_next";
-              desc = "Next Diagnostic";
-            };
-            "]d" = {
-              action = "goto_prev";
-              desc = "Previous Diagnostic";
-            };
           };
         };
         onAttach = ''
@@ -183,32 +175,47 @@
       };
     };
     extraConfigLua = ''
-      local _border = "rounded"
+      require("lspconfig.ui.windows").default_options = { border = "rounded" }
 
-          require('lspconfig.ui.windows').default_options = {
-            border = _border
-          }
+      vim.lsp.config("*", {
+        handlers = {
+          ["textDocument/hover"] = function(err, result, ctx, config)
+            vim.lsp.handlers.hover(err, result, ctx, vim.tbl_extend("force", config or {}, { border = "rounded" }))
+          end,
+          ["textDocument/signatureHelp"] = function(err, result, ctx, config)
+            vim.lsp.handlers.signature_help(err, result, ctx, vim.tbl_extend("force", config or {}, { border = "rounded" }))
+          end,
+        },
+      })
 
-          vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
-            config = vim.tbl_deep_extend("force", config or {}, { border = _border })
-            return vim.lsp.handlers.hover(err, result, ctx, config)
-          end
-
-          vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
-            config = vim.tbl_deep_extend("force", config or {}, { border = _border })
-            return vim.lsp.handlers.signature_help(err, result, ctx, config)
-          end
-
-          vim.diagnostic.config({
-      			float = { border = "rounded" },
-      			virtual_text = {
-      				prefix = "",
-      			},
-            signs = true,
-            underline = true,
-            update_in_insert = true,
-      		})
-
+      vim.diagnostic.config({
+        float = { border = "rounded" },
+        virtual_text = { prefix = "" },
+        signs = true,
+        underline = true,
+        update_in_insert = true,
+      })
     '';
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "[d";
+        action.__raw = ''function() vim.diagnostic.jump({ count = 1, float = true }) end'';
+        options = {
+          silent = true;
+          desc = "Next Diagnostic";
+        };
+      }
+      {
+        mode = "n";
+        key = "]d";
+        action.__raw = ''function() vim.diagnostic.jump({ count = -1, float = true }) end'';
+        options = {
+          silent = true;
+          desc = "Previous Diagnostic";
+        };
+      }
+    ];
   };
 }
