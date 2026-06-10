@@ -17,7 +17,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
 
       - name: Install Nix Linting and Formatting Tools
-        run: nix-env -i statix alejandra -f '<nixpkgs>'
+        run: nix-env -i statix nixfmt -f '<nixpkgs>'
 
       - name: Flake update
         run: nix flake update
@@ -26,7 +26,7 @@ jobs:
         run: statix fix
 
       - name: Run Nix Format
-        run: nix fmt
+        run: nix fmt -- $(git ls-files '*.nix')
 
       - name: Nix Flake Checker
         uses: DeterminateSystems/flake-checker-action@v5
