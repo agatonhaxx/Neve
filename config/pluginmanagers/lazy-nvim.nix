@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 {
   options = {
     lazy-nvim.enable = lib.mkEnableOption "Enable lazy-nvim module";
@@ -14,17 +9,11 @@
     '';
     plugins.lazy = {
       enable = true;
-      # Add neocord to lazy.nvim's managed plugins so that settings.spec is
-      # non-empty. This makes lazy.nvim interpret the settings table as opts
-      # (2nd arg to setup()), preventing it from resetting the runtimepath
-      # and breaking Vimscript autoload functions (e.g. neocord#SetAutoCmds).
-      #
-      # Using `config = ""` (empty string) prevents lazy.nvim from running its
-      # auto-setup callback (which would call setup() without opts), since
-      # Nixvim handles neocord setup separately via its own require call.
+      # Keep settings.spec non-empty so lazy.nvim treats settings as opts,
+      # while still sourcing neocord through Nixvim's managed plugin option.
       plugins = [
         {
-          pkg = pkgs.vimPlugins.neocord;
+          pkg = config.plugins.neocord.package;
           name = "neocord";
           config = "";
         }

@@ -1,26 +1,16 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 {
   options = {
     luasnip.enable = lib.mkEnableOption "Enable luasnip module";
   };
   config = lib.mkIf config.luasnip.enable {
+    plugins.friendly-snippets.enable = true;
     plugins.luasnip = {
       enable = true;
       settings = {
         enable_autosnippets = true;
         store_selection_keys = "<Tab>";
       };
-      fromVscode = [
-        {
-          lazyLoad = true;
-          paths = "${pkgs.vimPlugins.friendly-snippets}";
-        }
-      ];
     };
   };
 }
