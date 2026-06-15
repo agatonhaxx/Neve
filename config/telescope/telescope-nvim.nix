@@ -78,18 +78,11 @@
           options.desc = "Buffers";
         };
         "<leader>fh" = {
-          __raw = ''
-            function()
-              require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/dev/hive_mind") })
-            end'';
+          action = "<cmd>Telescope find_files search_dir=~/dev/git/hive-mind/";
           options.desc = "Files in hive_mind";
         };
         "<leader>fhg" = {
-          __raw = ''
-            function()
-              require("telescope.builtin").live_grep({ cwd = vim.fn.expand("~/dev/hive_mind") })
-            end
-          '';
+          action = "<cmd>Telescope live_grep search_dir=~/dev/git/hive-mind/";
           options.desc = "Grep in hive_mind";
         };
         "<C-p>" = {
