@@ -14,6 +14,7 @@
 
   # Import all your configuration modules here
   imports = [
+    ./autocommands
     ./bufferlines
     ./colorschemes
     ./completion

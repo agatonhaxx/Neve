@@ -77,6 +77,22 @@
           action = "buffers";
           options.desc = "Buffers";
         };
+        "<leader>fh" = {
+          action.__raw = ''
+            function()
+              require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/dev/hive_mind") })
+            end
+          '';
+          options.desc = "Files in hive_mind";
+        };
+        "<leader>fhg" = {
+          action.__raw = ''
+            function()
+              require("telescope.builtin").live_grep({ cwd = vim.fn.expand("~/dev/hive_mind") })
+            end
+          '';
+          options.desc = "Grep in hive_mind";
+        };
         "<C-p>" = {
           action = "git_files";
           options.desc = "Search git files";
