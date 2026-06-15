@@ -77,12 +77,12 @@
           action = "buffers";
           options.desc = "Buffers";
         };
-        "<leader>fh" = {
-          action = "<cmd>Telescope find_files search_dir=~/dev/git/hive-mind/";
+        "<leader>hf" = {
+          action = "<cmd>Telescope find_files search_dir=~/dev/git/hive-mind/<CR>";
           options.desc = "Files in hive_mind";
         };
-        "<leader>fhg" = {
-          action = "<cmd>Telescope live_grep search_dir=~/dev/git/hive-mind/";
+        "<leader>hg" = {
+          action = "<cmd>Telescope live_grep search_dir=~/dev/git/hive-mind/<CR>";
           options.desc = "Grep in hive_mind";
         };
         "<C-p>" = {
