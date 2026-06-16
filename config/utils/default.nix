@@ -52,7 +52,7 @@
     tmux-navigator.enable = lib.mkDefault true;
     todo-comments.enable = lib.mkDefault true;
     undotree.enable = lib.mkDefault true;
-    wakatime.enable = lib.mkDefault true;
+    wakatime.enable = false;
     which-key.enable = lib.mkDefault true;
     wilder.enable = lib.mkDefault false;
   };
