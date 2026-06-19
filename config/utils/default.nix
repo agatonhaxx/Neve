@@ -34,7 +34,7 @@
   };
   config = lib.mkIf config.utils.enable {
     better-escape.enable = lib.mkDefault true;
-    cloak.enable = lib.mkDefault true;
+    cloak.enable = false;
     harpoon.enable = lib.mkDefault true;
     markdown-preview.enable = lib.mkDefault true;
     peek.enable = lib.mkDefault false;
