@@ -5,8 +5,11 @@
 }:
 {
   imports = [
+    # Treesitter syntax highlighting, indentation, text objects, and context
     ./treesitter-nvim.nix
+    # Eclipse JDTLS Java language server
     ./jdtls.nix
+    # Asynchronous linting with per-filetype linters
     ./nvim-lint.nix
   ];
 

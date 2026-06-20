@@ -5,9 +5,13 @@
 }:
 {
   imports = [
+    # Git diff viewer for comparing revisions and branches
     ./diffview.nix
+    # Git decorations in signcolumn — blame, diff, and hunk staging
     ./gitsigns.nix
+    # LazyGit TUI integration with Telescope extension
     ./lazygit.nix
+    # Magit-like Git interface (disabled in favour of lazygit)
     ./neogit.nix
   ];
 

@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # Core Neovim settings — line numbers, tabs, search, undo, folds, appearance
     ./set.nix
   ];
 

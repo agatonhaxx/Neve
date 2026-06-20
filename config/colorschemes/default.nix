@@ -5,8 +5,11 @@
 }:
 {
   imports = [
+    # base16 colourscheme (mountain variant)
     ./base16.nix
+    # Catppuccin — mocha flavour, transparent background
     ./catppuccin.nix
+    # Rosé Pine with italic and bold styles
     ./rose-pine.nix
   ];
 

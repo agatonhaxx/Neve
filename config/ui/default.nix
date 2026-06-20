@@ -5,13 +5,21 @@
 }:
 {
   imports = [
+    # Dashboard/start screen with ASCII logo and quick-action buttons
     ./alpha.nix
+    # Winbar breadcrumb navigation
     ./barbecue.nix
+    # Improved vim.ui.select and vim.ui.input with Telescope backend
     ./dressing-nvim.nix
+    # Indentation guide lines with scope highlighting
     ./indent-blankline.nix
+    # Fancy UI for messages, cmdline, and popupmenu (disabled by default)
     ./noice.nix
+    # UI component library — dependency for other plugins
     ./nui.nix
+    # Notification system with toggle helpers for line numbers, wrap, and inlay hints
     ./notify.nix
+    # File type icons used throughout the UI
     ./web-devicons.nix
   ];
 

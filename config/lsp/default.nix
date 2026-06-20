@@ -5,9 +5,13 @@
 }:
 {
   imports = [
+    # Format-on-save with per-filetype formatters and toggle commands
     ./conform.nix
+    # LSP progress indicator in the status area
     ./fidget.nix
+    # LSP client — servers, keymaps for goto, hover, rename, and diagnostics
     ./lsp-nvim.nix
+    # Diagnostics and quickfix list viewer
     ./trouble.nix
   ];
 

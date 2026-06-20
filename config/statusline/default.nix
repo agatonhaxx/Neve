@@ -5,7 +5,9 @@
 }:
 {
   imports = [
+    # Feature-rich statusline with mode, branch, diagnostics, LSP, and navic
     ./lualine.nix
+    # Simple alternative statusline (disabled in favour of lualine)
     ./staline.nix
   ];
 

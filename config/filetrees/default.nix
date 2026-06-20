@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # File explorer sidebar with diagnostics, git status, and modified markers
     ./neo-tree.nix
   ];
 

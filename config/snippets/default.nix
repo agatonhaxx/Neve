@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # LuaSnip snippet engine with friendly-snippets and custom snippets
     ./luasnip.nix
   ];
 

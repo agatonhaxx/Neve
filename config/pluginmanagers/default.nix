@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # Lazy.nvim plugin manager in Nixvim integration mode
     ./lazy-nvim.nix
   ];
 

@@ -5,9 +5,13 @@
 }:
 {
   imports = [
+    # Autocompletion — nvim-cmp with LSP, buffer, path, cmdline, and LuaSnip sources
     ./cmp.nix
+    # Windsurf AI completion (disabled by default)
     ./windsurf.nix
+    # GitHub Copilot AI completion (disabled by default)
     ./copilot.nix
+    # Pictogram icons for completion item kinds
     ./lspkind.nix
   ];
 

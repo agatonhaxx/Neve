@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # Fuzzy finder with fzf-native and ui-select extensions
     ./telescope-nvim.nix
   ];
 

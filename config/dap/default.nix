@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # Debug Adapter Protocol — nvim-dap with UI, virtual text, and Python support
     ./nvim-dap.nix
   ];
 

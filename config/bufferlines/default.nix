@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    # Tab/buffer line UI with buffer management keymaps
     ./bufferline.nix
   ];
 
