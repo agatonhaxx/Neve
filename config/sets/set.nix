@@ -9,6 +9,9 @@
   };
   config = lib.mkIf config.set.enable {
     opts = {
+
+      clipboard.providers.wl-copy.enable = true;
+
       # Enable relative line numbers
       number = true;
       relativenumber = true;
