@@ -10,7 +10,10 @@
   config = lib.mkIf config.set.enable {
     opts = {
 
-      clipboard.providers.wl-copy.enable = true;
+      clipboard = {
+        register = "unnamedplusa";
+        providers.wl-copy.enable = true;
+      };
 
       # Enable relative line numbers
       number = true;
